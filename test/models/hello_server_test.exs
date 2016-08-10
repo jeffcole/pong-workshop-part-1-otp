@@ -6,7 +6,6 @@ defmodule Pong.HelloServerTest do
     {:ok, server: server}
   end
 
-  @tag :skip
   test "hello call", %{server: server} do
     {:ok, value} = GenServer.call(server, {:hello})
     assert value == :world

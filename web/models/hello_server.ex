@@ -13,6 +13,9 @@ defmodule Pong.HelloServer do
   #   {:reply, {:ok, value}, new_state}
   # end
 
+  def handle_call({:hello}, _from, state) do
+    {:reply, {:ok, :world}, state}
+  end
 
   # This doesn't do anything, just for reference
   def handle_cast({:hello}, state) do

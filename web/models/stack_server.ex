@@ -13,6 +13,25 @@ defmodule Pong.StackServer do
   #   {:reply, {:ok, value}, new_state}
   # end
 
+  def add(server, item) do
+    GenServer.cast(server, {:add, item})
+  end
+
+  def pop(server) do
+    GenServer.call(server, {:pop})
+  end
+
+  def get_state(server) do
+    GenServer.call(server, {:get_state})
+  end
+
+  def handle_cast({:add, item}, state) do
+    {:noreply, [item | state]}
+  end
+
+  def handle_call({:pop}, _from, [head | tail]) do
+    {:reply, {:ok, head}, tail}
+  end
 
   def handle_call({:get_state}, _from, state) do
     {:reply, {:ok, state}, state}
